@@ -1,3 +1,3 @@
-# ETLpipeline-realtime
+# Step Functions 
 
-Here is the first demo
+## Step functions and 7 types of states
