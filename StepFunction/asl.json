@@ -4,13 +4,13 @@
   "States": {
     "Get data": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:eu-central-1:915080644764:function:StepFunctions1",
+      "Resource": "arn:aws:lambda:****:function:StepFunctions1",
       "Next": "part2"
     },
     
       "part2": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:eu-central-1:915080644764:function:stepfunctions2",
+      "Resource": "arn:aws:lambda***:function:stepfunctions2",
       "End": true
     }
   }
