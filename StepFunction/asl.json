@@ -1,0 +1,17 @@
+{
+  "Comment": "A Hello World example of the Amazon States Language using Pass states",
+  "StartAt": "Get data",
+  "States": {
+    "Get data": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-central-1:915080644764:function:StepFunctions1",
+      "Next": "part2"
+    },
+    
+      "part2": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-central-1:915080644764:function:stepfunctions2",
+      "End": true
+    }
+  }
+}
