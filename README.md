@@ -9,4 +9,4 @@
 6. A [Succeed](https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-succeed-state.html) state ("Type": "Succeed") stops an execution successfully. The Succeed state is a useful target for Choice state branches that don't do anything but stop the execution.
 7. A [Fail](https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-fail-state.html) state ("Type": "Fail") stops the execution of the state machine and marks it as a failure, unless it is caught by a Catch block.
 
-
+![CNN-image](https://github.com/Foroozani/Neural_Nets/blob/main/images/DL.png)
