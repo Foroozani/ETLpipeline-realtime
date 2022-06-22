@@ -20,9 +20,9 @@ import awswrangler
 import pandas as pd
 
 
-source_bucket = "degruyter-live-cdnathena"
+source_bucket = "live-cdnathena"
 source_prefix = "partitioned/"
-dest_bucket = "degruyter-realtime-usagedata"
+dest_bucket = "realtime-usagedata"
 dest_key = "raw/cloudfront-logs/"
 
 def day_before(days_to_subtract):
