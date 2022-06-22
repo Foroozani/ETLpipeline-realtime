@@ -82,7 +82,6 @@ def merge_cloud_server(year, month, day, hour):
     server = server.filter(server.user_ip.isNotNull())
 
     # 2) clean timestamp
-    
     server = server.withColumn('timestamp_view', to_timestamp(server.timestamp_view, 'yyyy-MM-dd HH:mm:ss'))
 
     # 3) Add UNIX timestamp column
@@ -99,26 +98,13 @@ def merge_cloud_server(year, month, day, hour):
     # join cf and server
     join_cloud_server = server.join(cloudfront, (server.user_ip == cloudfront.request_ip)
                          & (abs(server.unix2 - cloudfront.unix1) <= 10)
-                         & (server.request_uri == cloudfront.cf_uri), how='left')
-    
-    join_cloud_server = join_cloud_server.select('timestamp_view', 'request_xray_trace_id', 'request_uri', 'user_session_id',
-                           'user_party_ids', 'user_external_ids', 'user_country', 'user_currency', 'user_language',
-                           'user_ip', 'content_isbn', 'normalized_isbn' ,'content_journal_key', 'content_dbid', 'content_serial_code',
-                           'content_volume', 'content_issue', 'content_doi', 'content_type', 'content_license',
-                           'activity_action', 'activity_search','was_successful', 'failure_reason', 'was_authorized' ,'date_view', 'time_view', 'location',
-                           'bytes', 'request_ip', 'method', 'host', 'uri', 'status', 'referrer',
-                           'user_agent', 'query_string', 'cf_uri', 'cookie', 'result_type', 'request_id',
-                           'host_header', 'request_protocol', 'request_bytes', 'time_taken', 'xforwarded_for',
-                           'ssl_protocol', 'ssl_cipher', 'response_result_type', 'http_version', 'fle_status',
-                           'fle_encrypted_fields', 'c_port', 'time_to_first_byte', 'x_edge_detailed_result_type',
-                           'sc_content_type', 'sc_content_len', 'sc_range_start', 'sc_range_end', 'cf_timestamp_view',
-                           'unix1', 'unix2')
+                         & (server.request_uri == cloudfront.cf_uri), how='left'
                            
     join_cloud_server = join_cloud_server.fillna(-999)
 
     write_to_s3(join_cloud_server, year, month, day, hour)
 
-BucketData = 'degruyter-realtime-usagedata'
+BucketData = '****-realtime-usagedata'
 def write_to_s3(df, year, month, day, hour):
     path = (
             "s3://"
@@ -143,7 +129,7 @@ end_date = datetime(int(year), int(month), int(day), 23, 59)
 for single_date in daterange(start_date, end_date):
     try:
         year, month, day, hour = get_date(single_date.strftime("%Y-%m-%d %H:%M"))
-        print('--->', year, month, day, hour)
+        #print('--->', year, month, day, hour)
         merge_cloud_server(year, month, day, hour)
     except Exception:
         continue
