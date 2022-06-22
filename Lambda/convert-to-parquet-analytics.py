@@ -18,9 +18,9 @@ import awswrangler
 import pandas as pd
 
 
-source_bucket = "degruyter-live-analyticstransfer-data"
+source_bucket = "live-analyticstransfer-data"
 source_prefix = "analyticstransfer/"
-dest_bucket = "degruyter-realtime-usagedata"
+dest_bucket = "realtime-usagedata"
 dest_key = "raw/analytic-logs/"
 
 def day_before(days_to_subtract):
