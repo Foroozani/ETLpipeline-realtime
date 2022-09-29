@@ -18,10 +18,10 @@ import awswrangler
 import pandas as pd
 
 
-source_bucket = "live-analyticstransfer-data"
-source_prefix = "analyticstransfer/"
-dest_bucket = "realtime-usagedata"
-dest_key = "raw/analytic-logs/"
+source_bucket = "analyticstransfer-data"
+source_prefix = "logs/"
+dest_bucket = "altime-usagedata"
+dest_key = "logs/"
 
 def day_before(days_to_subtract):
     from datetime import datetime
