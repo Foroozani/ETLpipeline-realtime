@@ -36,7 +36,7 @@ def transformation_to_parquet(source_bucket, obj, dest_bucket, dest_key, year, m
     in_path = "s3://" + source_bucket + "/" + obj 
     s3 = boto3.resource("s3")
     df = pd.read_csv(in_path, header=0, sep=',', quotechar='"', error_bad_lines = False)
-    out_path = "s3://" + dest_bucket + "/" + dest_key + "partition_year=" + year + "/partition_month=" + month + "/partition_day=" + day + "/partition_hour=" + hour + "/" + obj.split('/')[-1] + ".parquet"
+    out_path = "s3://" + dest_bucket + "/" + dest_key + "partition_year=" + year + "/partition_month=" + month + "/partition_day=" + day + "/partition_hour=" + hour + "/" + obj.split('/')[-1]
     df.to_parquet(out_path, engine = "pyarrow")
     
 
